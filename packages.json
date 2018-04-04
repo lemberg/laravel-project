@@ -1,0 +1,11 @@
+{
+  "package": {
+    "name": "lemberg/laravel-project",
+    "version": "5.5.0",
+    "source": {
+      "url": "git@github.com:lemberg/laravel-project.git",
+      "type": "git",
+      "reference": "master"
+    }
+  }
+}
