@@ -19,6 +19,7 @@ Based on [Laravel Framework](https://laravel.com) **5.5.**
 * composer
 * PHP >= 7.0.0
 * MySql >= 5.7
+* Sqlite3
 * OpenSSL PHP Extension
 * PDO PHP Extension
 * Mbstring PHP Extension
@@ -46,3 +47,4 @@ The project uses a **PRS2** PHP style code.
 
 ## Other Documents
 
+[Deploy](/docs/deploy.md)

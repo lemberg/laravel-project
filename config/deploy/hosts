@@ -1,0 +1,3 @@
+local ansible_host=localhost
+dev ansible_host=development-server-ssh-alias
+

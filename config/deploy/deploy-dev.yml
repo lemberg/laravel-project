@@ -1,0 +1,23 @@
+---
+- name: Deploy application to local server
+  hosts: local
+  vars:
+    ansistrano_deploy_from: "{{ playbook_dir }}"
+    ansistrano_deploy_to: "/tmp/deploy"
+    ansistrano_keep_releases: 3
+    ansistrano_deploy_via: git
+    ansistrano_git_repo: git@github.com:vendor/project.git
+    ansistrano_git_branch: develop
+
+    ansistrano_shared_paths:
+      - storage
+    ansistrano_shared_files:
+      - .env
+
+    # Additional task
+    ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/tasks/dev/after-symlink-shared.yml"
+    ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/tasks/dev/before-symlink.yml"
+    ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/tasks/dev/after-cleanup.yml"
+
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }

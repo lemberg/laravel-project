@@ -1,0 +1,25 @@
+- name: Disable application
+  shell: php artisan down
+  args:
+    chdir: /tmp/deploy/current
+# DO NOT run migration and db:seed in the Production servers!
+- name: Migrate DataBase
+  shell: php artisan migrate --force
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Seed DataBase only 'production' seeders
+  shell: php artisan db:seed --env=production --force
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Create storage symlink
+  shell: php artisan storage:link -q
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Cleare view cache
+  shell: php artisan view:clear
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Cleare application cache
+  shell: php artisan cache:clear
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"

@@ -1,0 +1,4 @@
+- name: Enable application
+  shell: php artisan up
+  args:
+    chdir: /tmp/deploy/current

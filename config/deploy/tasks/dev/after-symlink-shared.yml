@@ -1,0 +1,23 @@
+# Custom php and composer path
+#- name: Composer install all dependencies
+#  shell: |
+#    export PATH=/opt/plesk/php/7.0/bin::$PATH;
+#    /opt/plesk/php/7.0/bin/php /usr/lib64/plesk-9.0/composer.phar install
+#  args:
+#    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Composer install all dependencies
+  shell: composer install
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Check code style
+  shell: php artisan code-style
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Cleare testing sqlite database
+  shell: echo '' > ./database/database.sqlite
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+- name: Run tests
+  shell: ./vendor/bin/phpunit
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
