@@ -1,7 +1,7 @@
 - name: Disable application
   shell: php artisan down
   args:
-    chdir: /tmp/deploy/current
+    chdir: "{{ current_path }}"
 # DO NOT run migration and db:seed in the Production servers!
 - name: Migrate DataBase
   shell: php artisan migrate --force

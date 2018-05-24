@@ -19,5 +19,8 @@
     ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/tasks/dev/before-symlink.yml"
     ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/tasks/dev/after-cleanup.yml"
 
+    # Additional vars
+    current_path: ~/httpdocs/current
+
   roles:
     - { role: carlosbuenosvinos.ansistrano-deploy }
